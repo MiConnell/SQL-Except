@@ -73,7 +73,7 @@ def generate_sql_query(table, exclude, where):
         AND COLUMN_NAME NOT IN ('{"', '".join(map(str, [e for e in exclude]))}');
     """
     df = pd.read_sql(all_columns, conn)
-    lst = ", ".join(map(str, [c for c in df["column_name"]]))
+    lst = ", ".join(map(str, [c for c in df["COLUMN_NAME"]]))
     return f"""
     SELECT {lst} FROM {table} where {where};
     """
